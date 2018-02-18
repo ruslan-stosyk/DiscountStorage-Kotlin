@@ -58,6 +58,10 @@ dependencies {
     compile supportDependencies.customTabs
     compile supportDependencies.constraintLayout
 
+    //ButterKnife
+    compile butterknifeDependencies.butterKnife
+    annotationProcessor butterknifeDependencies.compiler
+
     compile libDependencies.glide
 }
 

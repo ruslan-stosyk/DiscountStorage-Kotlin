@@ -6,10 +6,11 @@ package com.stosh.discountstorage.contract
  * Date: February, 17, 2018
  * Time: 9:41 PM
  */
+
 abstract class BaseContract {
 
     interface BaseActions {
-        fun <View : BaseView> onViewAttached(view: View)
+        fun <View : BaseViews> onViewAttached(view: View)
 
         fun onViewDetached()
 
@@ -18,13 +19,7 @@ abstract class BaseContract {
         fun release()
     }
 
-    interface BaseView {
-        fun showDialog(title: String, message: String)
-
-        fun showSnackBar(message: String)
-
-        fun disableTouches(disable: Boolean)
-
+    interface BaseViews {
         fun showLoading()
 
         fun hideLoading()

@@ -1,6 +1,5 @@
 package com.stosh.discountstorage.dagger.scope
 
-import javax.inject.Qualifier
 import javax.inject.Scope
 
 
@@ -10,7 +9,5 @@ import javax.inject.Scope
  * Time: 9:35 PM
  */
 
-@Qualifier
-@Retention(value = AnnotationRetention.RUNTIME)
 @Scope
-annotation class MainScope
+annotation class AuthActivityScope

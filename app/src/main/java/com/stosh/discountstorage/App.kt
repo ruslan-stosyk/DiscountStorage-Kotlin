@@ -1,12 +1,11 @@
 package com.stosh.discountstorage
 
 import android.app.Application
-import android.net.ConnectivityManager
-import android.util.Log
 import com.stosh.discountstorage.dagger.component.AppComponent
+import com.stosh.discountstorage.dagger.component.AuthActivityComponent
 import com.stosh.discountstorage.dagger.component.DaggerAppComponent
 import com.stosh.discountstorage.dagger.module.AppModule
-import javax.inject.Inject
+import com.stosh.discountstorage.dagger.module.AuthActivityModule
 
 
 /**
@@ -16,18 +15,28 @@ import javax.inject.Inject
  */
 
 class App : Application() {
-    private val TAG = this.javaClass.name!!
-    lateinit var component: AppComponent
-    lateinit @Inject
-    var cm: ConnectivityManager
+
+
+    private lateinit var mAppComponent: AppComponent
+    private var mAuthActivityComponent: AuthActivityComponent? = null
+
 
     override fun onCreate() {
         super.onCreate()
-        component = DaggerAppComponent
+        mAppComponent = DaggerAppComponent
                 .builder()
                 .appModule(AppModule(this))
                 .build()
-        component.inject(this)
-        Log.d(TAG, "connectivity manager : ${cm}")
+    }
+
+    fun getAuthComponent(): AuthActivityComponent {
+        if (mAuthActivityComponent == null) {
+            mAuthActivityComponent = mAppComponent.initAuthComponent(AuthActivityModule())
+        }
+        return mAuthActivityComponent!!
+    }
+
+    fun releaseAuthComponent() {
+        mAuthActivityComponent = null
     }
 }

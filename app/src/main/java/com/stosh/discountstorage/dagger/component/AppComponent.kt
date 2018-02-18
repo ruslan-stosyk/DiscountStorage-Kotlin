@@ -1,7 +1,7 @@
 package com.stosh.discountstorage.dagger.component
 
 import com.stosh.discountstorage.dagger.module.AppModule
-import com.stosh.discountstorage.dagger.module.MainModule
+import com.stosh.discountstorage.dagger.module.AuthActivityModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,8 +12,8 @@ import javax.inject.Singleton
  * Time: 9:03 PM
  */
 
-@Singleton
 @Component(modules = [(AppModule::class)])
+@Singleton
 interface AppComponent {
-    fun initMainComponent(module: MainModule): MainComponent
+    fun initAuthComponent(module: AuthActivityModule): AuthActivityComponent
 }
