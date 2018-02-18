@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion compileSdkVersionValue
+
+    defaultConfig {
+        minSdkVersion minSdkVersionValue
+        targetSdkVersion targetSdkVersionValue
+        versionCode versionCodeValue
+        versionName versionNameValue
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled multiDexEnabledValue
+    }
+
+    buildTypes {
+        release {
+            shrinkResources shrinkResource
+            minifyEnabled minifyEnabledValue
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    compile libDependencies.kotlin
+
+    //firebase
+    compile firebaseDependencies.auth
+    compile firebaseDependencies.database
+    compile firebaseDependencies.core
+    compile firebaseDependencies.crash
+    compile firebaseDependencies.message
+    compile firebaseDependencies.storage
+
+    //RxJava2
+    compile rxDependencies.rxandroid2
+    compile rxDependencies.rxjava2
+
+    //okHttp
+    compile okHttpDependencies.okhttp
+    compile okHttpDependencies.loggingInterceptor
+
+    //Retrofit
+    compile retrofitDependencies.retrofit
+    compile retrofitDependencies.converterGson
+    compile retrofitDependencies.adapterRxjava2
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}

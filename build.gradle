@@ -1,0 +1,106 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.2.21'
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:3.1.2'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://maven.google.com/' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersionValue = 26
+
+    minSdkVersionValue = 21
+    targetSdkVersionValue = 26
+
+    versionCodeValue = 1
+    versionNameValue = "0.0.1"
+
+    multiDexEnabledValue = true
+    shrinkResource = false
+    minifyEnabledValue = false
+
+    supportLibraryVersion = '27.0.2'
+    supportConstrainVersion = '1.0.2'
+    daggerVersion = '2.11'
+    firebaseVersion = '11.0.4'
+    rxVersion = '2.0.1'
+    retrofit2Version = '2.3.0'
+    okhttp3Version = '3.3.0'
+    okhttp3LoggingInterceptorVersion = '3.8.1'
+    retrofit2AdapterVersion = "1.0.0"
+
+    firebaseDependencies = [
+            database: "com.google.firebase:firebase-database:${firebaseVersion}",
+            core    : "com.google.firebase:firebase-core:${firebaseVersion}",
+            crash   : "com.google.firebase:firebase-crash:${firebaseVersion}",
+            auth    : "com.google.firebase:firebase-auth:${firebaseVersion}",
+            message : "com.google.firebase:firebase-messaging:${firebaseVersion}",
+            storage : "com.google.firebase:firebase-storage:${firebaseVersion}"
+    ]
+
+    daggerDependencies = [
+            dagger        : "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
+    ]
+
+    supportDependencies = [
+            appCompat       : "com.android.support:appcompat-v7:${supportLibraryVersion}",
+            support         : "com.android.support:support-v4:${supportLibraryVersion}",
+            design          : "com.android.support:design:${supportLibraryVersion}",
+            palette         : "com.android.support:palette-v7:${supportLibraryVersion}",
+            annotations     : "com.android.support:support-annotations:${supportLibraryVersion}",
+            recyclerview    : "com.android.support:recyclerview-v7:${supportLibraryVersion}",
+            cardview        : "com.android.support:cardview-v7:${supportLibraryVersion}",
+            customTabs      : "com.android.support:customtabs:${supportLibraryVersion}",
+            constraintLayout: "com.android.support.constraint:constraint-layout:${supportConstrainVersion}"
+    ]
+
+    retrofitDependencies = [
+            retrofit                 : "com.squareup.retrofit2:retrofit:${retrofit2Version}",
+            converterGson            : "com.squareup.retrofit2:converter-gson:${retrofit2Version}",
+            adapterRxjava            : "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}",
+            adapterRxjava2           : "com.squareup.retrofit2:adapter-rxjava2:${retrofit2Version}",
+            jakewhartonAdapterRxjava2: "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${retrofit2AdapterVersion}"
+    ]
+
+    okHttpDependencies = [
+            okhttp            : "com.squareup.okhttp3:okhttp:${okhttp3Version}",
+            loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttp3LoggingInterceptorVersion}"
+    ]
+
+    rxDependencies = [
+            rxandroid2: "io.reactivex.rxjava2:rxandroid:${rxVersion}",
+            rxjava2   : "io.reactivex.rxjava2:rxjava:${rxVersion}"
+    ]
+
+    libDependencies = [
+            kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
+            glide            : "com.github.bumptech.glide:glide:3.7.0",
+            circularImageview: "com.pkmmte.view:circularimageview:1.1",
+    ]
+}
+

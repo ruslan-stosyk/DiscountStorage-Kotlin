@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion compileSdkVersionValue
+
+    defaultConfig {
+        applicationId "com.stosh.discountstorage"
+        minSdkVersion minSdkVersionValue
+        targetSdkVersion targetSdkVersionValue
+        versionCode versionCodeValue
+        versionName versionNameValue
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled multiDexEnabledValue
+    }
+
+    buildTypes {
+        release {
+            shrinkResources shrinkResource
+            minifyEnabled minifyEnabledValue
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kapt {
+        generateStubs = true
+    }
+}
+
+dependencies {
+    compile project(':domain')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    //dagger
+    compile daggerDependencies.dagger
+    kapt 'com.google.dagger:dagger-compiler:2.11'
+
+    //supportLibrary
+    compile supportDependencies.appCompat
+    compile supportDependencies.support
+    compile supportDependencies.design
+    compile supportDependencies.palette
+    compile supportDependencies.annotations
+    compile supportDependencies.recyclerview
+    compile supportDependencies.cardview
+    compile supportDependencies.customTabs
+    compile supportDependencies.constraintLayout
+
+    compile libDependencies.glide
+}
+
+apply plugin: 'com.google.gms.google-services'
